@@ -1,2 +1,7 @@
 # TaskManagement
-please execute update-database command in package manager on data access layer before run project.
+
+In case of any database connection problem:
+
+Open the Packge manager console for the **Data access layer** and write this command: 
+
+**PM> update-database**
