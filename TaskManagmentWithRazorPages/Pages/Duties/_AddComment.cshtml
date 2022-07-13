@@ -1,0 +1,46 @@
+﻿@model ViewModels.VMComment
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header headerStyle">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="AddForm" asp-page-handler="AddComment" method="post" asp-page="Detail" name="addComment-modal-form">
+
+                    @Html.HiddenFor(m=>m.Id)
+                    @Html.HiddenFor(m=>m.DutyId)
+
+                    <div class="row form-group mb-4">
+                        @Html.LabelFor(m=>m.CommentText)
+                        @Html.EditorFor(m=>m.CommentText, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    @Html.DropDownList("Type",
+                    Html.GetEnumSelectList<Domain.Enums.CommentType>(),
+                    "Select Comment Type")
+
+                    <div class="row form-group mb-4">
+                        @Html.LabelFor(m=>m.ReminderDate)
+                        @Html.EditorFor(m=>m.ReminderDate, "", new { @class = "text-danger" })
+                    </div>
+                </form>
+            </div>
+            <div style="position:sticky; bottom:0">
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" form="AddForm" class="btn btn-info">Save changes</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

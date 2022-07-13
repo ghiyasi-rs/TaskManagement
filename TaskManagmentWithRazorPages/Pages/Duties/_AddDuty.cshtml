@@ -1,0 +1,62 @@
+﻿@model ViewModels.VMDuty
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header headerStyle">
+               
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="AddForm" asp-page-handler="AddDuty" method="post" asp-page="Index" name="addDuty-modal-form">
+                    <div class="row form-group mb-4">
+                        @Html.LabelFor(m=>m.Title)
+                        @Html.EditorFor(m=>m.Title)
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row form-group mb-4">
+                        @Html.LabelFor(m=>m.Description)
+                        @Html.EditorFor(m=>m.Description)
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row form-group mb-4">
+                        @Html.LabelFor(m=>m.RequiredBy)
+                        @Html.EditorFor(m=>m.RequiredBy)
+                    </div>
+                    <div class="row form-group mb-4">
+
+                        @Html.LabelFor(m=>m.AssignedTo)
+                        <select asp-for="AssignedTo"
+                                class="form-control"
+                                asp-items="Html.GetEnumSelectList<Domain.Enums.UserList>()">
+                            <option>Select User ...</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.AssignedTo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row form-group mb-4">
+                        @Html.LabelFor(m=>m.Status)
+                        @Html.DropDownList("Status",
+                        Html.GetEnumSelectList<Domain.Enums.DutyStatus>(),
+                        "Select Status")
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row form-group mb-4">
+                        @Html.LabelFor(m=>m.Type)
+                        @Html.DropDownList("Type",
+                        Html.GetEnumSelectList<Domain.Enums.DutyType>(),
+                        "Select Type")
+                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                    </div>
+                  
+
+                </form>
+            </div>
+            <div style="position:sticky; bottom:0">
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" form="AddForm" class="btn btn-info">Save changes</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
